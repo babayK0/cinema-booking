@@ -1,0 +1,53 @@
+@import './normalize';
+@import './variables';
+@import './header';
+@import './main';
+
+body {
+    background-color: $darkBlue;
+    color: $lightGrey;
+    font-family: Helvetica, sans-serif;
+    height: 100vh;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+a {
+    color: $lightGrey;
+    text-decoration: none;
+}
+
+a:focus {
+    outline: none;
+}
+
+img {
+    width: 100%;
+}
+
+.visuallyHidden {
+    position: absolute;
+    appearance: none;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    width: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+}
+
+
+// **Note!!** Хорошей практикой является написание стилей в определённом порядке:
+// 
+// 1. позиционирование
+// 2. `box-sizing`, `display`
+// 3. отступы
+// 4. свойства, которые влияют на размеры, размер шрифта и т.д.
+// 5. "украшательства", фон, тени и т.д.
+// 
+// Это нужно, чтобы потом не терятся в описаниях стилей элементов, у которых много правил.

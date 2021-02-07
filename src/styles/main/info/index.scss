@@ -1,0 +1,36 @@
+.info {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.infoWrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.movieTitle {
+    align-self: center;
+    font-size: 0.8em;
+}
+
+.movieImageWrapper {
+    width: 25%;
+}
+
+.description {
+    width: 50%;
+}
+
+.descriptionList {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 5px;
+    margin: 0;
+    font-size: 0.5em;
+}
+
+.descriptionList dd {
+    margin: 0;
+    color: $dimmedBlue;
+}

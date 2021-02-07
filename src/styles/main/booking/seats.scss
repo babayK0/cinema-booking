@@ -1,0 +1,73 @@
+.seats {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    counter-reset: seatsBeforeCounter seatsAfterCounter;
+}
+
+.seatRow {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 7px;
+    padding: 0 10px;
+}
+
+.seatRow::before, .seatRow::after {
+    position: absolute;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 10px;
+    height: 100%;
+    font-size: 8px;
+    
+}
+
+.seatRow::before {
+    left: -10px;
+    counter-increment: seatsBeforeCounter;
+    content: counter(seatsBeforeCounter)
+}
+
+.seatRow::after {
+    justify-content: flex-start;
+    right: -10px;
+    counter-increment: seatsAfterCounter;
+    content: counter(seatsAfterCounter)
+}
+
+.seatLabel {
+    position: relative;
+    display: block;
+    width: 9px;
+    height: 9px;
+    border: 1px solid $aqua;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.seatLabel:hover {
+    background-color: transparentize($aqua, 0.9);
+}
+
+.seatCheckbox:checked + .seatLabel {
+    background-color: $aqua;
+    background-image: url('/assets/svg/checkMark.svg');
+}
+
+.seatCheckbox:disabled.--purchased + .seatLabel {
+    border-color: $darkGrey;
+    background-color: $darkGrey;
+}
+
+.seatCheckbox:disabled.--reserved + .seatLabel {
+    border-color: $grey;
+    background-color: $grey;
+}
+
+.seatCheckbox:focus + .seatLabel{
+    border-color: $white;
+}
