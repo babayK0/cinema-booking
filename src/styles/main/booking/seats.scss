@@ -1,7 +1,6 @@
 .seats {
     display: flex;
     flex-direction: column;
-    gap: 5px;
     counter-reset: seatsBeforeCounter seatsAfterCounter;
 }
 
@@ -10,8 +9,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    column-gap: 7px;
+    margin-bottom: 5px;
     padding: 0 10px;
+}
+
+.seatRow:last-child {
+    margin-bottom: 0;
 }
 
 .seatRow::before, .seatRow::after {
@@ -37,6 +40,14 @@
     right: -10px;
     counter-increment: seatsAfterCounter;
     content: counter(seatsAfterCounter)
+}
+
+.seat {
+    margin-right: 7px;
+}
+
+.seat:last-child {
+    margin-right: 0;
 }
 
 .seatLabel {
