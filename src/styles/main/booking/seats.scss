@@ -1,6 +1,7 @@
 .seats {
     display: flex;
     flex-direction: column;
+    margin-bottom: 25px;
     counter-reset: seatsBeforeCounter seatsAfterCounter;
 }
 
@@ -10,7 +11,6 @@
     justify-content: center;
     align-items: center;
     margin-bottom: 5px;
-    padding: 0 10px;
 }
 
 .seatRow:last-child {
@@ -68,19 +68,22 @@
     background-color: transparentize($aqua, 0.9);
 }
 
-.seatCheckbox:checked + .seatLabel {
+.seatCheckbox:checked + .seatLabel,
+.seatsInfo .seatLabel.--selected {
     background-color: $aqua;
     background-image: url('/assets/svg/checkMark.svg');
     background-repeat: no-repeat;
     background-position: center;
 }
 
-.seatCheckbox:disabled + .seatLabel.--purchased {
+.seatCheckbox:disabled + .seatLabel.--purchased,
+.seatsInfo .seatLabel.--purchased {
     border-color: $darkGrey;
     background-color: $darkGrey;
 }
 
-.seatCheckbox:disabled + .seatLabel.--reserved {
+.seatCheckbox:disabled + .seatLabel.--reserved,
+.seatsInfo .seatLabel.--reserved {
     border-color: $grey;
     background-color: $grey;
 }
@@ -89,14 +92,22 @@
     border-color: $white;
 }
 
-.seatsInfo {}
+.seatsInfo {
+    display: flex;
+    margin-bottom: 25px;
+    padding: 0 10px;
+}
+
+.seatsInfo .seat {
+    margin-right: auto;
+}
 
 .seatsInfo .seatLabel {
-    cursor: none;
+    cursor: auto;
 }
 
 .seatsInfo .seatLabel:hover {
-    background-color: transparent;
+    background-color: unset;
 }
 
 .seatLabelInfo {

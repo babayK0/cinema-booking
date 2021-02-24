@@ -1,0 +1,25 @@
+.submitButtonWrapper {
+    text-align: center;
+}
+
+.submitButton {
+    margin: 0;
+    padding: 5px 20px;
+    background: linear-gradient(90deg, rgba(82,217,243,1) 15%, rgba(62,71,236,1) 100%);
+    border: 1px transparent solid;
+    border-radius: 20px;
+    color: $white;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all .2s linear;
+}
+
+.submitButton:hover {
+    box-shadow: 0px 0px 10px 1px #183b43;
+}
+
+.submitButton:focus,
+.submitButton:active {
+    outline: none;
+    border-color: $white;
+}
