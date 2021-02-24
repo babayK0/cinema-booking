@@ -60,6 +60,10 @@
     cursor: pointer;
 }
 
+.seat.--double .seatLabel {
+    width: 18px;
+}
+
 .seatLabel:hover {
     background-color: transparentize($aqua, 0.9);
 }
@@ -67,18 +71,37 @@
 .seatCheckbox:checked + .seatLabel {
     background-color: $aqua;
     background-image: url('/assets/svg/checkMark.svg');
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
-.seatCheckbox:disabled.--purchased + .seatLabel {
+.seatCheckbox:disabled + .seatLabel.--purchased {
     border-color: $darkGrey;
     background-color: $darkGrey;
 }
 
-.seatCheckbox:disabled.--reserved + .seatLabel {
+.seatCheckbox:disabled + .seatLabel.--reserved {
     border-color: $grey;
     background-color: $grey;
 }
 
 .seatCheckbox:focus + .seatLabel{
     border-color: $white;
+}
+
+.seatsInfo {}
+
+.seatsInfo .seatLabel {
+    cursor: none;
+}
+
+.seatsInfo .seatLabel:hover {
+    background-color: transparent;
+}
+
+.seatLabelInfo {
+    margin: 0;
+    margin-left: 12px;
+    font-size: 0.5em;
+    white-space: nowrap;
 }
