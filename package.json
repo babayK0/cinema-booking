@@ -11,7 +11,10 @@
     "build-dev": "parcel build ./src/index.html --no-minify --public-url ./",
     "prebuild": "shx rm -rf dist/",
     "build": "parcel build ./src/index.html --public-url ./",
-    "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup"
+    "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup",
+    "lint": "eslint ./src",
+    "lint:fix": "eslint --fix ./src",
+    "format": "prettier --write \"**/*.+(js|jsx|json|yml|yaml|css|md)\""
   },
   "devDependencies": {
     "autoprefixer": "^9.8.6",
@@ -19,6 +22,8 @@
     "parcel-bundler": "^1.12.4",
     "prettier": "^2.2.1",
     "sass": "^1.32.5",
-    "shx": "^0.3.3"
+    "shx": "^0.3.3",
+    "eslint-config-prettier": "^7.2.0",
+    "eslint-plugin-prettier": "^3.3.1"
   }
 }
