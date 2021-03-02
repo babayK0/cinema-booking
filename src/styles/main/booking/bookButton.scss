@@ -1,13 +1,16 @@
+$buttonRadius: 20px;
+
 .submitButtonWrapper {
     text-align: center;
 }
 
 .submitButton {
+    position: relative;
     margin: 0;
     padding: 5px 20px;
     background: linear-gradient(90deg, rgba(82,217,243,1) 15%, rgba(62,71,236,1) 100%);
-    border: 1px transparent solid;
-    border-radius: 20px;
+    border: none;
+    border-radius: $buttonRadius;
     color: $white;
     text-transform: uppercase;
     cursor: pointer;
@@ -21,5 +24,16 @@
 .submitButton:focus,
 .submitButton:active {
     outline: none;
-    border-color: $white;
+
+    &.submitButton::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        z-index: 2;
+        border-radius: $buttonRadius;
+        box-shadow: 0 0 0 1px $white;
+    }
 }

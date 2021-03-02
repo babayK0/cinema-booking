@@ -19,18 +19,18 @@
 }
 
 .description {
-    width: 50%;
+    width: calc(75% - 15px);
 }
 
 .descriptionList {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: .3fr 1fr;
     row-gap: 5px;
     margin: 0;
-    font-size: 0.5em;
 }
 
 .descriptionList dd {
     margin: 0;
+    margin-left: 10px;
     color: $dimmedBlue;
 }

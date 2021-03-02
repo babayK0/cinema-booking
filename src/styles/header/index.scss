@@ -41,9 +41,13 @@
     border-color: $aqua;
 }
 
+.searchButtonIcon {
+    pointer-events: none;
+}
+
 .nav {
     margin: 0 10px;
-    font-size: 0.8em
+    font-size: 0.8em;
 }
 
 .navList {

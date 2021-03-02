@@ -1,4 +1,5 @@
 @import './normalize';
+@import './mixinMedia';
 @import './variables';
 @import './header';
 @import './main';
@@ -7,10 +8,17 @@ body {
     background-color: $darkBlue;
     color: $lightGrey;
     font-family: Helvetica, sans-serif;
-    height: 100vh;
+    padding-bottom: 20px;
+    margin: 0 auto;
+    @include desktop {
+        max-width: 900px;
+    }
+    @include desktopL {
+        max-width: 1200px;
+    }
 }
 
-ul {
+ul, ol {
     margin: 0;
     padding: 0;
     list-style-type: none;
