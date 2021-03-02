@@ -1,13 +1,14 @@
-const Seat = ({ id }) => {
+const Seat = ({ rowId, id }) => {
     const seat = document.createElement('seat');
     seat.classList.add('seat');
     seat.innerHTML = `
         <input
           type="checkbox"
-          id="${id}"
+          id="seat:${rowId}-${id}"
           class="seatCheckbox visuallyHidden"
+          data-row="${rowId}" data-seat="${id}"
         />
-        <label for="${id}" class="seatLabel"></label>
+        <label for="seat:${rowId}-${id}" class="seatLabel"></label>
     `;
     return seat;
 };
@@ -18,9 +19,7 @@ const SeatRow = ({ rowId, seats = mockedSeats } = {}) => {
     seatRow.classList.add('seatRow');
     seatRow.setAttribute('id', `seatRow:${rowId}`);
     const seatRowFragment = document.createDocumentFragment();
-    seatRowFragment.append(
-        ...seats.map((id) => Seat({ id: `seat:${rowId}-${id}` }))
-    );
+    seatRowFragment.append(...seats.map((id) => Seat({ rowId, id })));
     seatRow.append(seatRowFragment);
     return seatRow;
 };
@@ -74,9 +73,71 @@ const SubmitButton = () => {
     return submitButtonWrapper;
 };
 
+const SelectedSeats = () => {
+    const selectedSeats = document.createElement('div');
+    selectedSeats.setAttribute('id', 'selectedSeats');
+    return selectedSeats;
+};
+
+const updateSeatsScreen = (selectedSeats) => {
+    const selectedSeatsScreen = document.getElementById('selectedSeats');
+    const selectedSeatsFragment = document.createDocumentFragment();
+    selectedSeats.forEach((seat) => {
+        const info = `Row: ${seat.row}; Seat: ${seat.seat};`;
+        selectedSeatsFragment.append(info);
+    });
+    selectedSeatsScreen.innerHTML = '';
+    selectedSeatsScreen.append(selectedSeatsFragment);
+};
+
 export const BookingForm = () => {
+    let state = {
+        selectedSeats: [],
+    };
+
+    const setState = (newState) => {
+        state = { ...newState };
+    };
+
+    const getSeatData = (selectedSeat) => {
+        const { row, seat } = selectedSeat.dataset;
+        return { row, seat };
+    };
+
+    const addSeat = (selectedSeat) => {
+        setState({
+            selectedSeats: [...state.selectedSeats, getSeatData(selectedSeat)],
+        });
+    };
+
+    const removeSeat = (selectedSeat) => {
+        const filteredSeats = state.selectedSeats.filter((seat) => {
+            const { row: selectedRow, seat: selectedSeatId } = getSeatData(
+                selectedSeat
+            );
+            return (
+                `${seat.row}${seat.seat}` !== `${selectedRow}${selectedSeatId}`
+            );
+        });
+        setState({ selectedSeats: filteredSeats });
+    };
+
+    const handleSeatSelect = ({ target }) => {
+        if (target.type !== 'checkbox') return;
+        if (target.checked) addSeat(target);
+        else removeSeat(target);
+        updateSeatsScreen(state.selectedSeats);
+    };
+
     const bookingForm = document.createElement('form');
     bookingForm.setAttribute('id', 'bookingSeats');
-    bookingForm.append(BookingSeats(), SeatsInfo(), SubmitButton());
+    bookingForm.append(
+        BookingSeats(),
+        SeatsInfo(),
+        SelectedSeats(),
+        SubmitButton()
+    );
+
+    bookingForm.addEventListener('change', handleSeatSelect);
     return bookingForm;
 };
